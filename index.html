@@ -52,23 +52,24 @@
             bottom_red($($bottoms[i]));
         })
     }
-    var timerId = setInterval(() => {
-        n < $bottoms.length - 1 ? n++ : n = 0
-        bottom_red($($bottoms[n]).trigger('click'));
-    }, 1500);
-    function bottom_red(bottom) {
-        bottom.addClass('red').siblings().removeClass('red')
-    }
+    var timerId = set_time()
     $('.window').on('mouseenter', function () {
         window.clearInterval(timerId)
     })
-
     $('.window').on('mouseleave', function () {
-        timerId = setInterval(() => {
+        timerId = set_time()
+    })
+    /*-----以下是工具函数-----*/
+    function bottom_red(bottom) {
+        bottom.addClass('red').siblings().removeClass('red')
+    }
+    function set_time() {
+        return setInterval(() => {
             n < $bottoms.length - 1 ? n++ : n = 0
             bottom_red($($bottoms[n]).trigger('click'));
         }, 1500);
-    })
+    }
+
 </script>
 
 </html>
